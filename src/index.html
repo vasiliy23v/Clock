@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title</title>
+</head>
+
+<body>
+  <svg width="400" height="400" viewBox="-100 -100 200 200">
+    <circle class="minute_marker" r="90" pathLength="60" />
+    <circle class="hour_marker" r="90" pathLength="60" />
+
+    <g id="hour_hand">
+      <line class="hand" x1="0" y1="0" x2="0" y2="-50" />
+    </g>
+
+    <g id="minute_hand">
+      <line class="hand" x1="0" y1="0" x2="0" y2="-80" />
+    </g>
+
+    <g id="second_hand">
+      <line class="hand hand--second" x1="0" y1="0" x2="0" y2="-80" />
+    </g>
+    <circle r="3" stroke="#fff" fill="#fff" />
+  </svg>
+
+  <script>
+    const hoursElement = document.getElementById("hour_hand");
+    const minutesElement = document.getElementById("minute_hand");
+    const secondsElement = document.getElementById("second_hand");
+
+    function animate() {
+      const date = new Date();
+
+      const hour = date.getHours() % 12;
+      const minute = date.getMinutes();
+      const second = date.getSeconds();
+      const milisecond = date.getMilliseconds();
+      console.log("MS",milisecond);
+      console.log("Sec",second);
+      console.log("Res",second + milisecond);
+
+      hoursElement.setAttribute("transform", `rotate(${(360 / 12) * hour})`);
+      minutesElement.setAttribute("transform", `rotate(${(360 / 60) * minute})`);
+      secondsElement.setAttribute("transform", `rotate(${(360 / 60 / 1000) * ((second*1000) + milisecond)})`);
+
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+
+  </script>
+</body>
+
+</html>
