@@ -39,9 +39,6 @@
       const minute = date.getMinutes();
       const second = date.getSeconds();
       const milisecond = date.getMilliseconds();
-      console.log("MS",milisecond);
-      console.log("Sec",second);
-      console.log("Res",second + milisecond);
 
       hoursElement.setAttribute("transform", `rotate(${(360 / 12) * hour})`);
       minutesElement.setAttribute("transform", `rotate(${(360 / 60) * minute})`);
